@@ -37,7 +37,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/enterNumb"
         app:layout_constraintEnd_toEndOf="parent"/>
     <ListView
-        android:id="@+id/listedTimes"
+        android:id="@+id/listResults"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:dividerHeight="1dp"
