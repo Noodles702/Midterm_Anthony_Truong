@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
         results.clear();
         for (int i = 1; i <= 10; i++) {
-            results.add(n + " × " + i + " = " + (n * i));
+            results.add(n + " x " + i + " = " + (n * i));
         }
         resultsAdapter.notifyDataSetChanged();
         TimesTables.addNumber(n);

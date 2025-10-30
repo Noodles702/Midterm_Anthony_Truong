@@ -1,9 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Midterm_Anthony_Truong" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- Base application theme WITH ActionBar -->
+    <style name="Theme.Midterm_Anthony_Truong" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Customize your light theme here -->
     </style>
-
-    <style name="Theme.Midterm_Anthony_Truong" parent="Base.Theme.Midterm_Anthony_Truong" />
 </resources>

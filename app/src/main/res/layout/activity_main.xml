@@ -8,6 +8,7 @@
     tools:context=".MainActivity"
     android:padding="12dp">
 
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
