@@ -30,14 +30,7 @@ public class HistoryActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            // EITHER of these is fine. Choose one:
-
-            // Option A (simplest):
             finish();
-
-            // Option B (if you prefer the dispatcher API):
-            // getOnBackPressedDispatcher().onBackPressed();
-
             return true;
         }
         return super.onOptionsItemSelected(item);
