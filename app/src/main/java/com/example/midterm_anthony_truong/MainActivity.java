@@ -22,11 +22,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText enterNumber;
-    private Button calcButton;
+    private EditText enterNumb;
+    private Button calcBtn;
     private ListView listResults;
 
-    private ArrayList<String> results = new ArrayList<>();
+    private final ArrayList<String> results = new ArrayList<>();
     private ArrayAdapter<String> resultsAdapter;
 
     private static final String KEY_RESULTS = "results";
@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        enterNumber  = findViewById(R.id.enterNumb);
-        calcButton   = findViewById(R.id.calcBtn);
-        listResults  = findViewById(R.id.listResults);
+        enterNumb   = findViewById(R.id.enterNumb);
+        calcBtn     = findViewById(R.id.calcBtn);
+        listResults = findViewById(R.id.listResults);
 
         resultsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, results);
         listResults.setAdapter(resultsAdapter);
@@ -58,16 +58,30 @@ public class MainActivity extends AppCompatActivity {
                 results.addAll(restored);
                 resultsAdapter.notifyDataSetChanged();
             }
-            enterNumber.setText(savedInstanceState.getString(KEY_INPUT, ""));
+            enterNumb.setText(savedInstanceState.getString(KEY_INPUT, ""));
         }
 
-        calcButton.setOnClickListener(v -> generateTable());
+        calcBtn.setOnClickListener(v -> generateTable());
+
+        listResults.setOnItemClickListener((parent, view, position, id) -> {
+            String row = results.get(position);
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Delete row?")
+                    .setMessage("Remove: " + row + " ?")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        results.remove(position);
+                        resultsAdapter.notifyDataSetChanged();
+                        Toast.makeText(MainActivity.this, "Deleted: " + row, Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
     }
 
     private void generateTable() {
-        String text = enterNumber.getText().toString().trim();
+        String text = enterNumb.getText().toString().trim();
         if (TextUtils.isEmpty(text)) {
-            enterNumber.setError("Enter a number");
+            enterNumb.setError("Enter a number");
             return;
         }
 
@@ -75,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             n = Integer.parseInt(text);
         } catch (NumberFormatException e) {
-            enterNumber.setError("Invalid number");
+            enterNumb.setError("Invalid number");
             return;
         }
 
@@ -123,6 +137,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putStringArrayList(KEY_RESULTS, new ArrayList<>(results));
-        outState.putString(KEY_INPUT, enterNumber.getText().toString());
+        outState.putString(KEY_INPUT, enterNumb.getText().toString());
     }
 }
